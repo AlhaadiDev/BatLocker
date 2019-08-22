@@ -1,6 +1,7 @@
 @ECHO OFF
 if EXIST "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" goto CREATELOOPVIRUS
-if NOT EXIST 1Personal goto MD1Personal
+if NOT EXIST FolderName goto MKDIRFOLDER
+
 :CONFIRM
 echo ................................Konfirm..............................
 echo NATERRRRRRRR...
@@ -16,48 +17,70 @@ echo ..............................................................
 echo NATERRRRRRRR...
 echo Molek ehh, Saloh pilih tuh. Pilih Molek la GILOOOO.. NATE BEROKKK.
 goto CONFIRM
+
+:CONFIRM2
+echo .....
+echo System recommend immediately terminate the window for security purpose.
+echo Close the window? (y/n)
+set/p "cho2=>"
+if %cho2%==Y goto END
+if %cho2%==y goto END
+if %cho2%==n goto UNLOCK
+if %cho2%==N goto UNLOCK
+goto CONFIRM2
+
 :LOCK
-ren 1Personal "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
+ren FolderName "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
 attrib +h +s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
 echo ................................Kociii..............................
 echo NATERRRRRRRR...
-
 echo Beress, Koci doh fail Demo boh,
 echo System tusuk doh fail demo..  Beressss.
-:: goto End
 goto PAUSE
+
 :UNLOCK
 echo .....
 echo .............................Bukokkk.................................
 echo NATERRRRRRRR...
 echo Masok password demo boh, kalu nok bukok Fail Gakkk.
 set/p "pass=>"
-if NOT %pass%== ?pass?????11``? goto FAIL
+if NOT %pass%== {password} goto FAIL
+if %pass%== {password} goto UNLOCK2
+goto CONFIRM
+
+:UNLOCK2
+echo .....
+echo .............................Bukokkk 2.................................
+echo NATERRRRRRRR 2...
+echo Masok password 2 demo boh, kalu nok bukok Fail Gakkk.
+set/p "pass=>"
+if NOT %pass%== {2ndpassword} goto FAIL
 attrib -h -s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
-ren "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" 1Personal
+ren "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" FolderName
 echo ..............................................................
 echo NATERRRRRRRR...
 echo Beress Folder Bukok Doh.
 goto CONFIRM
+
 :FAIL
 echo ...............................Salohhh...............................
 echo NATERRRRRRRR...
 echo Password Saloh Nihhh, mung tahu dok password benarnyo, ko mung nok bukok fail ore lain..
 echo NATEEEE BEROKKKK......
-:: goto end
 goto PAUSE
-:MD1Personal
-md 1Personal
+
+:MKDIRFOLDER
+md FolderName
 echo ............................Buat Fail..................................
 echo NATERRRRRRRR...
-echo Fail namo 1Personal , buat doh tuh demo cek molek deh...  Beresss  BossKurrrrRRRR..
-:: goto End
+echo Fail namo FolderName , buat doh tuh demo cek molek deh...  Beresss  BossKurrrrRRRR..
 goto PAUSE
+
 :CREATELOOPVIRUS
 Set Sleep=0
 
 :startLoop
-if %Sleep% == 2000 ( goto UNLOCK )
+if %Sleep% == 2000 (goto CONFIRM2 )
 echo .............................VIRUS WARNING!!!.................................
 echo .............................VIRUS WARNING!!!.................................
 echo .............................VIRUS WARNING!!!.................................
@@ -66,10 +89,12 @@ echo .............................VIRUS WARNING!!!..............................
 Set /A Sleep+=1
 :: echo ... %Sleep%
 echo ...
-echo WARNING, SPREADING THE VIRUS in 30sec from now!!.. 
+echo WARNING, AUTO SPREADING THE VIRUS in 30sec from now!!.. 
 echo To prevent close the window ASAP.. 
 goto startLoop
 
-:End
 :PAUSE
-PAUSE
+pause
+
+:End
+
